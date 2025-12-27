@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+   <meta charset="UTF-8">
+   <title>Livro de Mensagem - Administração</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <style>
+       body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        #btn-limpar {
+            border: 1px solid rgba(255, 0, 0, 0.548);
+            padding: 4px 7px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: rgba(255, 0, 0, 0.781);
+            border-radius: 5px;
+        }
+
+        #btn-limpar:hover {
+            background-color: rgba(255, 0, 0, 0.137);
+        }
+
+   </style>
+</head>
+<body class="p-6 flex flex-col items-center min-h-screen">
+   <div class="max-w-xl w-full">
+       <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center">Livro de Mensagem</h1>
+
+
+       <!-- Formulário de Registo -->
+       <div class="bg-white p-6 rounded-lg shadow-md mb-6 border-t-4 border-blue-600">
+           <h2 class="text-lg font-semibold mb-4 text-slate-700">Deixe uma Mensagem</h2>
+           <form action="{{ url_for('livro_mensagem') }}" method="POST" class="space-y-4">
+               <input type="text" name="nome" placeholder="O seu nome" required
+                      class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-300 outline-none">
+               <textarea name="mensagem" placeholder="A sua mensagem" required
+                         class="w-full p-2 border rounded h-24 focus:ring-2 focus:ring-blue-300 outline-none resize-none"></textarea>
+              
+               <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded font-bold hover:bg-blue-700 transition">
+                   Enviar
+               </button>
+           </form>
+       </div>
+
+
+       <!-- Lista de Mensagens -->
+       <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-slate-400">
+           <div class="flex justify-between items-center mb-6">
+               <h2 class="text-xl font-bold text-slate-800">Mensagens Recebidas</h2>
+
+               <form action="{{url_for('limpar_dados')}}" method="post">
+                    <button type="submit" id="btn-limpar">LIMPAR DADOS</button>
+               </form>
+           </div>
+
+
+           <div class="space-y-3">
+               {% for msg in mensagens %}
+                   <div class="p-3 bg-slate-50 border-l-4 border-slate-300 rounded text-slate-700 text-sm shadow-sm">
+                       {{ msg }}
+                   </div>
+               {% else %}
+                   <p class="text-slate-400 italic text-center py-6 border-2 border-dashed rounded">O ficheiro de texto está vazio.</p>
+               {% endfor %}
+           </div>
+          
+           <p class="mt-6 text-[10px] text-slate-400 text-center uppercase tracking-widest">
+               A persistência de dados está sendo em: mensagens.txt
+           </p>
+       </div>
+   </div>
+</body>
+</html>

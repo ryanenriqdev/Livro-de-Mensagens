@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Limpeza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+   <style>
+       body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+    </style>
+
+</head>
+<body>
+    <!-- Formulário confirmação de exclusão -->
+       <div class="bg-white p-6 rounded-lg shadow-md mb-6 border-t-4 border-red-600" style="margin:4rem; ">
+           <h2 class="text-lg font-semibold mb-4 text-slate-700" style="font-size: 1.5rem;">Tem certeza?</h2>
+           <form action="{{ url_for('confirmar_limpeza') }}" method="POST" class="space-y-4">
+                <h2 style="color: gray;">Esta ação irá apagar todas as mensagens guardadas no ficheiro permanentemente.</h2>
+                <div class="botoes" style="text-align: center;">
+                    <button type="submit" style="padding: 0.5rem 0.7rem; color: white; background-color: red; font-weight: bold; border-radius: 5px; width: 40%;">Sim, apagar tudo</button>
+                    <button style="padding: 0.5rem 0.7rem; color: rgb(71, 71, 71); background-color:rgb(175, 175, 175); font-weight: bold; border-radius: 5px; width: 40%;"><a href="{{ url_for('livro_mensagem') }}">Cancelar</a></button>
+                </div>
+           </form>
+       </div>
+</body>
+</html>
